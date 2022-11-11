@@ -6,18 +6,21 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.akij.app.simple_api_project.adapter.HomeForecastTemperatureAdapter;
+import com.akij.app.simple_api_project.adapter.HomeAllHoursTemperatureAdapter;
 import com.akij.app.simple_api_project.adapter.HomeHourlyAdapter;
 import com.akij.app.simple_api_project.model.HomeHourlyModel;
-import com.akij.app.simple_api_project.model.HomeTemperatureModel;
+import com.akij.app.simple_api_project.model.HomeAllHoursTemperatureModel;
 import com.akij.app.simple_api_project.model.WeatherModel;
 import com.akij.app.simple_api_project.network.APIClient;
 import com.akij.app.simple_api_project.network.APIInterface;
+import com.akij.app.simple_api_project.ui.ForecastActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +31,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView txtTemperature, txtCity, txtCloudCover, txtHumidity, txtPrecipitation, txtWind, txtSoilTemperature;
+    TextView txtTemperature, txtCity, txtCloudCover, txtHumidity, txtPrecipitation, txtWind, txtSoilTemperature, txtForecastWeatherActivity;
     APIInterface apiInterface;
     RecyclerView recyclerView, hourlyRecyclerView;
     Double precipitation, surfacePressure, evaporation, soilTemperature, temperature, wind, visibility, soilMoisture, raining, snowfall;
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(recyclerView);
         snapHelper.attachToRecyclerView(hourlyRecyclerView);
-        List<HomeTemperatureModel> list= new ArrayList<>();
+        List<HomeAllHoursTemperatureModel> homeAllHoursTemperatureList= new ArrayList<>();
         List<HomeHourlyModel> homeHourlyModelList= new ArrayList<>();
 
         Call<WeatherModel> call= apiInterface.getAllWeatherData();
@@ -81,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
                 snowfall= weatherModel.getHourly().getSnowfall().get(0);
                 surfacePressure= weatherModel.getHourly().getSurfacePressure().get(0);
                 evaporation= weatherModel.getHourly().getEvapotranspiration().get(0);
+
+                for (int i= 0; i< 24; i++){
+                    String sub= weatherModel.getHourly().getTime().get(i).substring(weatherModel.getHourly().getTime().get(i).length() - 5);
+                    homeAllHoursTemperatureList.add(new HomeAllHoursTemperatureModel(sub, weatherModel.getHourly().getTemperature2m().get(i)+""));
+                }
+                HomeAllHoursTemperatureAdapter adapter= new HomeAllHoursTemperatureAdapter(MainActivity.this, homeAllHoursTemperatureList);
+                recyclerView.setAdapter(adapter);
+
                 /// ui update
                 txtCity.setText(cityName);
                 txtTemperature.setText(String.valueOf(temperature));
@@ -111,22 +122,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("called_failed: ", t.toString());
             }
         });
-
-
-        list.add(new HomeTemperatureModel("01-10-2022", "30"));
-        list.add(new HomeTemperatureModel("01-11-2022", "20"));
-        list.add(new HomeTemperatureModel("01-12-2022", "35"));
-        list.add(new HomeTemperatureModel("01-13-2022", "25"));
-        list.add(new HomeTemperatureModel("01-14-2022", "15"));
-
-
-
-
-        HomeForecastTemperatureAdapter adapter= new HomeForecastTemperatureAdapter(this, list);
-
-        recyclerView.setAdapter(adapter);
-
-
+        txtForecastWeatherActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ForecastActivity.class));
+            }
+        });
     }
 
     void findAllView(){
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
         txtSoilTemperature= findViewById(R.id.txt_soil_temperature);
         recyclerView= findViewById(R.id.forecast_temperature_recycler_view);
         hourlyRecyclerView= findViewById(R.id.home_hourly_recycler_view);
+        txtForecastWeatherActivity= findViewById(R.id.txt_forecast_weather_activity);
     }
 
 }

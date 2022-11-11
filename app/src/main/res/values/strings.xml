@@ -12,6 +12,6 @@
     <string name="precipitation">Precipitation</string>
     <string name="wind">Wind</string>
     <string name="soil_temperature">Soil temperature</string>
-    <string name="next_7_days_temperature">Next 7 Days Temperature</string>
+    <string name="next_7_days">Next 7 Days</string>
     <string name="c">C</string>
 </resources>
