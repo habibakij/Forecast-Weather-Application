@@ -12,7 +12,6 @@ public class APIClient {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         retrofit = new Retrofit.Builder()
-                //.baseUrl("https://api.openweathermap.org/data/2.5/") old
                 .baseUrl("https://api.open-meteo.com/v1/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)

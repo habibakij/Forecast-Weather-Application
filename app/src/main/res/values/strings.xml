@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Simple Api Project</string>
+    <string name="_05_30">05: 30</string>
+    <string name="cloud_cover">Cloud cover</string>
+    <string name="dhaka">Dhaka</string>
+    <string name="o">o</string>
+    <string name="_30">30</string>
+    <string name="today">Today</string>
+    <string name="surface_pressure">Surface pressure</string>
+    <string name="humidity">Humidity</string>
+    <string name="evaporation">Evaporation</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="wind">Wind</string>
+    <string name="soil_temperature">Soil temperature</string>
+    <string name="next_7_days_temperature">Next 7 Days Temperature</string>
+    <string name="c">C</string>
 </resources>

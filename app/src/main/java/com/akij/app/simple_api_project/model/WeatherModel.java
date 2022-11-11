@@ -1,101 +1,85 @@
 package com.akij.app.simple_api_project.model;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import java.util.List;
 
 public class WeatherModel {
-    @SerializedName("coord")
+    @SerializedName("latitude")
     @Expose
-    private Coord coord;
-    @SerializedName("weather")
+    private Double latitude;
+    @SerializedName("longitude")
     @Expose
-    private List<Weather> weather = null;
-    @SerializedName("base")
+    private Double longitude;
+    @SerializedName("generationtime_ms")
     @Expose
-    private String base;
-    @SerializedName("main")
+    private Double generationtimeMs;
+    @SerializedName("utc_offset_seconds")
     @Expose
-    private MainData mainData;
-    @SerializedName("visibility")
-    @Expose
-    private Integer visibility;
-    @SerializedName("wind")
-    @Expose
-    private Wind wind;
-    @SerializedName("clouds")
-    @Expose
-    private Clouds clouds;
-    @SerializedName("dt")
-    @Expose
-    private Integer dt;
-    @SerializedName("sys")
-    @Expose
-    private Sys sys;
+    private Integer utcOffsetSeconds;
     @SerializedName("timezone")
     @Expose
-    private Integer timezone;
-    @SerializedName("id")
+    private String timezone;
+    @SerializedName("timezone_abbreviation")
     @Expose
-    private Integer id;
-    @SerializedName("name")
+    private String timezoneAbbreviation;
+    @SerializedName("elevation")
     @Expose
-    private String name;
-    @SerializedName("cod")
+    private Double elevation;
+    @SerializedName("hourly_units")
     @Expose
-    private Integer cod;
+    private HourlyUnits hourlyUnits;
+    @SerializedName("hourly")
+    @Expose
+    private Hourly hourly;
+    @SerializedName("daily_units")
+    @Expose
+    private DailyUnits dailyUnits;
+    @SerializedName("daily")
+    @Expose
+    private Daily daily;
 
-    public Coord getCoord() {
-        return coord;
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public List<Weather> getWeather() {
-        return weather;
+    public Double getLongitude() {
+        return longitude;
     }
 
-    public String getBase() {
-        return base;
+    public Double getGenerationtimeMs() {
+        return generationtimeMs;
     }
 
-    public MainData getMainData() {
-        return mainData;
+    public Integer getUtcOffsetSeconds() {
+        return utcOffsetSeconds;
     }
 
-    public Integer getVisibility() {
-        return visibility;
-    }
-
-    public Wind getWind() {
-        return wind;
-    }
-
-    public Clouds getClouds() {
-        return clouds;
-    }
-
-    public Integer getDt() {
-        return dt;
-    }
-
-    public Sys getSys() {
-        return sys;
-    }
-
-    public Integer getTimezone() {
+    public String getTimezone() {
         return timezone;
     }
 
-    public Integer getId() {
-        return id;
+    public String getTimezoneAbbreviation() {
+        return timezoneAbbreviation;
     }
 
-    public String getName() {
-        return name;
+    public Double getElevation() {
+        return elevation;
     }
 
-    public Integer getCod() {
-        return cod;
+    public HourlyUnits getHourlyUnits() {
+        return hourlyUnits;
+    }
+
+    public Hourly getHourly() {
+        return hourly;
+    }
+
+    public DailyUnits getDailyUnits() {
+        return dailyUnits;
+    }
+
+    public Daily getDaily() {
+        return daily;
     }
 
 }
-
-
