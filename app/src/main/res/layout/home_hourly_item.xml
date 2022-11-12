@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2sp"
         android:gravity="center"
-        android:text="Sunrise"
+        android:text="@string/sunrise"
         android:textSize="12sp"
         android:textColor="#000" />
 
@@ -30,7 +30,7 @@
         android:id="@+id/txt_hourly_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="05: 30"
+        android:text="@string/_05_30"
         android:textColor="#000"
         android:textSize="12sp"
         android:maxLines="1"

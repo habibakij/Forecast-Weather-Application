@@ -14,4 +14,14 @@
     <string name="soil_temperature">Soil temperature</string>
     <string name="next_7_days">Next 7 Days</string>
     <string name="c">C</string>
+    <string name="sunrise">Sunrise</string>
+    <string name="sunset">Sunset</string>
+    <string name="sunrise_and_sunset">Sunrise and Sunset</string>
+    <string name="max_and_min_temperature">Max and Min Temperature</string>
+    <string name="max_temperature">Max Temperature</string>
+    <string name="min_temperature">Min Temperature</string>
+    <string name="rain_and_snowfall">Rain and Snowfall</string>
+    <string name="rain">Rain</string>
+    <string name="snowfall">Snowfall</string>
+    <string name="precipitation_and_wind">Precipitation and Wind</string>
 </resources>

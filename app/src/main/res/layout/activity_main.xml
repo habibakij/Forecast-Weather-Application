@@ -410,8 +410,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
-        android:layout_margin="10sp"
+        android:layout_weight="2.1"
         android:background="#fff">
 
         <androidx.cardview.widget.CardView
@@ -422,7 +421,7 @@
             app:cardBackgroundColor="#EDEDED"
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
-            android:layout_marginBottom="5sp"
+            android:layout_marginBottom="10sp"
             android:layout_marginTop="5sp">
 
             <LinearLayout

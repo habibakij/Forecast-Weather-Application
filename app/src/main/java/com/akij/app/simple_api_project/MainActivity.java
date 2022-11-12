@@ -1,12 +1,20 @@
 package com.akij.app.simple_api_project;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,11 +46,37 @@ public class MainActivity extends AppCompatActivity {
     int cloudCover, humidity, windDirection;
     String cityName, sunRise, sunSet;
 
+    LocationManager locationManager;
+    double latitude, longitude;
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void getLatitudeLongitude() {
+        try {
+            Log.d("checking_", "oke");
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "denied", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Location location1 = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            latitude = location1.getAltitude();
+            longitude = location1.getLongitude();
+        }
+        catch (Exception e){
+            Toast.makeText(this, "Enable your location.", Toast.LENGTH_SHORT).show();
+            Log.d("check_error", e.toString());
+            e.printStackTrace();
+        }
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Weather App");
+        getLatitudeLongitude();
         findAllView();
         apiInterface = APIClient.getClient().create(APIInterface.class);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -57,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         List<HomeAllHoursTemperatureModel> homeAllHoursTemperatureList= new ArrayList<>();
         List<HomeHourlyModel> homeHourlyModelList= new ArrayList<>();
 
-        Call<WeatherModel> call= apiInterface.getAllWeatherData();
+        Call<WeatherModel> call= apiInterface.getAllWeatherData(latitude, longitude);
         call.enqueue(new Callback<WeatherModel>() {
             @Override
             public void onResponse(Call<WeatherModel> call, Response<WeatherModel> response) {
