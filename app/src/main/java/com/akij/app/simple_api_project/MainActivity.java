@@ -2,6 +2,7 @@ package com.akij.app.simple_api_project;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,8 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +32,9 @@ import com.akij.app.simple_api_project.model.WeatherModel;
 import com.akij.app.simple_api_project.network.APIClient;
 import com.akij.app.simple_api_project.network.APIInterface;
 import com.akij.app.simple_api_project.ui.ForecastActivity;
+import com.google.gson.Gson;
+
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +45,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView txtTemperature, txtCity, txtCloudCover, txtHumidity, txtPrecipitation, txtWind, txtSoilTemperature, txtForecastWeatherActivity;
+    TextView txtTemperature, txtCity, txtCloudCover, txtHumidity, txtPrecipitation, txtWind, txtSoilTemperature,
+            txtForecastWeatherActivity, toolbarTitle;
     APIInterface apiInterface;
     RecyclerView recyclerView, hourlyRecyclerView;
     Double precipitation, surfacePressure, evaporation, soilTemperature, temperature, wind, visibility, soilMoisture, raining, snowfall;
@@ -69,15 +76,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    WeatherModel weatherModel;
+    Toolbar toolbar;
+    String title= "Forecast Weather App";
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("Weather App");
         getLatitudeLongitude();
         findAllView();
+        toolbarTitle.setText(title);
         apiInterface = APIClient.getClient().create(APIInterface.class);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -100,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Called filed", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                WeatherModel weatherModel= response.body();
+                weatherModel= response.body();
                 cityName= weatherModel.getTimezone();
                 temperature= weatherModel.getHourly().getSoilTemperature0cm().get(0);
                 cloudCover= weatherModel.getHourly().getCloudcoverLow().get(0);
@@ -125,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 HomeAllHoursTemperatureAdapter adapter= new HomeAllHoursTemperatureAdapter(MainActivity.this, homeAllHoursTemperatureList);
                 recyclerView.setAdapter(adapter);
-
                 /// ui update
                 txtCity.setText(cityName);
                 txtTemperature.setText(String.valueOf(temperature));
@@ -134,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 txtPrecipitation.setText(String.valueOf(precipitation+" %"));
                 txtWind.setText(String.valueOf(wind+" km/h"));
                 txtSoilTemperature.setText(String.valueOf(soilTemperature+" C"));
-                // list view update
+                // recycler view update
                 double v= visibility / 1000.0;
                 String subSun= sunRise.substring(sunRise.length() - 5);
                 String subSet= sunSet.substring(sunSet.length() - 5);
@@ -159,7 +168,10 @@ public class MainActivity extends AppCompatActivity {
         txtForecastWeatherActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ForecastActivity.class));
+                Gson gson = new Gson();
+                Intent intent= new Intent(MainActivity.this, ForecastActivity.class);
+                intent.putExtra("WEATHER_OBJECT", gson.toJson(weatherModel));
+                startActivity(intent);
             }
         });
     }
@@ -175,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView= findViewById(R.id.forecast_temperature_recycler_view);
         hourlyRecyclerView= findViewById(R.id.home_hourly_recycler_view);
         txtForecastWeatherActivity= findViewById(R.id.txt_forecast_weather_activity);
+        toolbar= findViewById(R.id.custom_toolbar_app);
+        toolbarTitle= findViewById(R.id.toolbar_title);
     }
 
 }

@@ -37,6 +37,7 @@ public class DailyPreceWindAdapter extends RecyclerView.Adapter<DailyPreceWindAd
         DailyPreceWindModel model= dailyPreceWindModels.get(position);
         holder.txtDailyPrecipitation.setText(String.valueOf(model.getPrecipitation()));
         holder.txtDailyWind.setText(String.valueOf(model.getWind()));
+        holder.txtDailyTime.setText(model.getTime());
     }
 
     @Override
@@ -46,12 +47,13 @@ public class DailyPreceWindAdapter extends RecyclerView.Adapter<DailyPreceWindAd
 
     public static class DailyPreceWindAdapterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtDailyPrecipitation, txtDailyWind;
+        TextView txtDailyPrecipitation, txtDailyWind, txtDailyTime;
 
         public DailyPreceWindAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             this.txtDailyPrecipitation= itemView.findViewById(R.id.txt_daily_precipitation);
             this.txtDailyWind= itemView.findViewById(R.id.txt_daily_wind);
+            this.txtDailyTime= itemView.findViewById(R.id.txt_daily_prece_wind_time);
         }
     }
 }

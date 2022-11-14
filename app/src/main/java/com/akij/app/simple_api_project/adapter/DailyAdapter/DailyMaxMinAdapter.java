@@ -34,6 +34,7 @@ public class DailyMaxMinAdapter extends RecyclerView.Adapter<DailyMaxMinAdapter.
         DailyMaxMinTemperatureModel model= dailyMaxMinTemperatureModels.get(position);
         holder.txtDailyMaxTemperature.setText(String.valueOf(model.getMaxTemperature()));
         holder.txtDailyMinTemperature.setText(String.valueOf(model.getMinTemperature()));
+        holder.txtDailyMaxMinTime.setText(model.getTime());
     }
 
     @Override
@@ -43,12 +44,13 @@ public class DailyMaxMinAdapter extends RecyclerView.Adapter<DailyMaxMinAdapter.
 
     public static class DailyMaxMinAdapterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtDailyMaxTemperature, txtDailyMinTemperature;
+        TextView txtDailyMaxTemperature, txtDailyMinTemperature, txtDailyMaxMinTime;
 
         public DailyMaxMinAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             this.txtDailyMaxTemperature= itemView.findViewById(R.id.txt_daily_max_temperature);
             this.txtDailyMinTemperature= itemView.findViewById(R.id.txt_daily_min_temperature);
+            this.txtDailyMaxMinTime= itemView.findViewById(R.id.txt_daily_max_min_time);
         }
     }
 }

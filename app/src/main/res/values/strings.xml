@@ -24,4 +24,5 @@
     <string name="rain">Rain</string>
     <string name="snowfall">Snowfall</string>
     <string name="precipitation_and_wind">Precipitation and Wind</string>
+    <string name="time">01-10-20022</string>
 </resources>

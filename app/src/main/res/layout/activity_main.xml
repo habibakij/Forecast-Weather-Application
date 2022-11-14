@@ -8,17 +8,21 @@
     android:orientation="vertical"
     android:background="#fff">
 
+    <include layout="@layout/custom_toolbar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
         android:layout_marginTop="10sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
         android:orientation="horizontal"
         android:gravity="center">
 
         <LinearLayout
-            android:layout_width="120sp"
+            android:layout_width="0sp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -30,8 +34,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="5sp"
                 android:layout_marginBottom="2sp"
-                android:layout_marginLeft="17sp"
-                android:layout_marginRight="17sp">
+                android:layout_marginEnd="15sp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -57,7 +60,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/humidity"
-                            android:textColor="#000000"
+                            android:textColor="#ffffff"
                             android:maxLines="2"
                             android:textSize="12sp"/>
 
@@ -66,7 +69,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/_05_30"
-                            android:textColor="#000000"
+                            android:textColor="#ffffff"
                             android:maxLines="1"
                             android:singleLine="true"/>
 
@@ -75,7 +78,6 @@
 
 
                 </androidx.cardview.widget.CardView>
-
 
             </LinearLayout>
 
@@ -87,8 +89,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="2sp"
                 android:layout_marginBottom="15sp"
-                android:layout_marginLeft="17sp"
-                android:layout_marginRight="17sp">
+                android:layout_marginEnd="15sp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -114,7 +115,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/precipitation"
-                            android:textColor="#000000"
+                            android:textColor="#ffffff"
                             android:maxLines="1"
                             android:textSize="12sp"
                             android:singleLine="true"/>
@@ -124,7 +125,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/_05_30"
-                            android:textColor="#000000"
+                            android:textColor="#ffffff"
                             android:maxLines="1"
                             android:singleLine="true"/>
 
@@ -140,7 +141,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="120sp"
+            android:layout_width="0sp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:background="@drawable/round_gradient"
             android:orientation="vertical"
@@ -166,7 +168,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/today"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         android:gravity="center"
                         android:textSize="16sp"/>
 
@@ -202,21 +204,21 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/_30"
-                                android:textColor="#000"
+                                android:textColor="#ffffff"
                                 android:textSize="20sp"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="@string/o"
-                                android:textColor="#000"
+                                android:textColor="#ffffff"
                                 android:textSize="12sp"/>
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/c"
-                                android:textColor="#000"
+                                android:textColor="#ffffff"
                                 android:textSize="20sp"/>
 
                         </LinearLayout>
@@ -227,7 +229,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="@string/dhaka"
-                            android:textColor="#000"
+                            android:textColor="#ffffff"
                             android:textSize="14sp"/>
 
                     </LinearLayout>
@@ -262,7 +264,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/cloud_cover"
-                        android:textColor="#000000"
+                        android:textColor="#ffffff"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textSize="14sp"/>
@@ -272,7 +274,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/_05_30"
-                        android:textColor="#000"
+                        android:textColor="#ffffff"
                         android:maxLines="1"
                         android:singleLine="true"/>
 
@@ -284,7 +286,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="120sp"
+            android:layout_width="0sp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -296,8 +299,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="5sp"
                 android:layout_marginBottom="2sp"
-                android:layout_marginLeft="17sp"
-                android:layout_marginRight="17sp">
+                android:layout_marginStart="15sp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -324,7 +326,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/wind"
-                            android:textColor="#000000"
+                            android:textColor="#ffffff"
                             android:maxLines="2"
                             android:textSize="12sp"/>
 
@@ -333,7 +335,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/_05_30"
-                            android:textColor="#000000"
+                            android:textColor="#ffffff"
                             android:maxLines="1"
                             android:singleLine="true"/>
 
@@ -342,7 +344,6 @@
 
 
                 </androidx.cardview.widget.CardView>
-
 
             </LinearLayout>
 
@@ -354,8 +355,7 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="15sp"
                 android:layout_marginTop="2sp"
-                android:layout_marginLeft="17sp"
-                android:layout_marginRight="17sp">
+                android:layout_marginStart="15sp">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -382,7 +382,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="@string/soil_temperature"
-                            android:textColor="#000000"
+                            android:textColor="#ffffff"
                             android:maxLines="2"
                             android:textSize="12sp"/>
 
@@ -391,7 +391,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/_05_30"
-                            android:textColor="#000000"
+                            android:textColor="#ffffff"
                             android:maxLines="1"
                             android:singleLine="true"/>
 
@@ -419,8 +419,8 @@
             app:cardCornerRadius="15sp"
             app:cardElevation="5sp"
             app:cardBackgroundColor="#EDEDED"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
             android:layout_marginBottom="10sp"
             android:layout_marginTop="5sp">
 

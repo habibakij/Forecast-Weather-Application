@@ -33,6 +33,7 @@ public class DailyRainSnowfallAdapter extends RecyclerView.Adapter<DailyRainSnow
         DailyRainSnowfallModel model= rainSnowfallModels.get(position);
         holder.txtDailyRain.setText(String.valueOf(model.getRain()));
         holder.txtDailySnowfall.setText(String.valueOf(model.getSnowfall()));
+        holder.txtDailyTime.setText(model.getTime());
     }
 
     @Override
@@ -42,12 +43,13 @@ public class DailyRainSnowfallAdapter extends RecyclerView.Adapter<DailyRainSnow
 
     public static class DailyRainSnowfallAdapterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtDailyRain, txtDailySnowfall;
+        TextView txtDailyRain, txtDailySnowfall, txtDailyTime;
 
         public DailyRainSnowfallAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             this.txtDailyRain= itemView.findViewById(R.id.txt_daily_rain);
             this.txtDailySnowfall= itemView.findViewById(R.id.txt_daily_snowfall);
+            this.txtDailyTime= itemView.findViewById(R.id.txt_daily_rain_snow_time);
         }
     }
 }

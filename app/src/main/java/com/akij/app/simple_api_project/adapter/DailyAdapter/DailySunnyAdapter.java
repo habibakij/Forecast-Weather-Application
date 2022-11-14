@@ -33,6 +33,7 @@ public class DailySunnyAdapter extends RecyclerView.Adapter<DailySunnyAdapter.Da
         DailySunnyModel model= dailySunnyModels.get(position);
         holder.txtDailySunrise.setText(model.getSunrise());
         holder.txtDailySunset.setText(model.getSunset());
+        holder.txtDailyTime.setText(model.getTime());
     }
 
     @Override
@@ -42,12 +43,13 @@ public class DailySunnyAdapter extends RecyclerView.Adapter<DailySunnyAdapter.Da
 
     public static class DailySunnyAdapterViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtDailySunrise, txtDailySunset;
+        TextView txtDailySunrise, txtDailySunset, txtDailyTime;
 
         public DailySunnyAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             this.txtDailySunrise= itemView.findViewById(R.id.txt_daily_sunrise);
             this.txtDailySunset= itemView.findViewById(R.id.txt_daily_sunset);
+            this.txtDailyTime= itemView.findViewById(R.id.txt_daily_sunny_time);
         }
     }
 }
